@@ -15,10 +15,10 @@ Point evaluation in the algorithm was take from [TPGs point evaluation](https://
 
 Alt-Things To Work On
 ------
-> Need to work out a few bugs that the application has. 
-> Add more logging
-> Exception Handling
-> Error page/error code
-> Re-populate fields after calculate button is pressed
-> Add more color to the screen. (Maybe include card art.)
+- Need to work out a few bugs that the application has. 
+- Add more logging
+- Exception Handling
+- Error page/error code
+- Re-populate fields after calculate button is pressed
+- Add more color to the screen. (Maybe include card art.)
    
