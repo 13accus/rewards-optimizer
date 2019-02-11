@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Profile</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Rewards Optimizer</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+        </ul>
+    </div>
+</nav>
+
+<div class="container container-fluid no-padding">
+    <form id="calculateform" action="#" th:action="@{/}" th:object="${CalculationFormResponse}" method="post">
+
+    <div class="row ">
+        <div class="col-2">
+            <table>
+                <tr th:each="category,stat : ${categories}">
+                    <td>
+                        <label for="${category.name}-input" class="col-form-label"
+                               th:text="${category.name}">Title</label>
+                        <input  th:field="*{moneySpentCategories[__${stat.index}__].amountSpent}" type="number" class="form-control" id="${category.name}-input" placeholder="0.00" form="calculateform" value="${category.name}-input">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-7 pre-scrollable">
+            <br>
+            <div class="card-deck">
+                <div th:each="card,stat : ${cards}">
+                    <div class="card mt-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${card.name}">Card Title</h5>
+                            <h6 class="card-subtitle mb-2 text-muted" th:text="${card.rewardType.rewardName}">Card subtitle</h6>
+                            <input th:field="*{cardFormResponseObjectsList[__${stat.index}__].bonus}" type="number" class="form-control" form="calculateform" placeholder="Bonus Offer">
+                            <br>
+                            <input type="checkbox" checked th:field="*{cardFormResponseObjectsList[__${stat.index}__].cardInWallet}" data-toggle="toggle" form="calculateform">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-1">
+            <div class="mt-2" style="width: 200px;">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+                    <button type="mt-5 submit" class="btn btn-primary btn-lg">Calculate</button>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row reward type">
+        <div class="card-deck">
+            <div th:each="rewardType : ${pointsObtained}">
+                <div class="card mt-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${rewardType.getKey()}">Card Title</h5>
+                        <h3 class="display-4" th:text="${pointsObtained?.get('__${rewardType.getKey()}__')} + ' pts'">0 pts</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+
+
+</body>
+</html>
